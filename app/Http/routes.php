@@ -17,6 +17,8 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+
+just test
 */
 
 Route::group( array('domain' => 'mystack.com', 'prefix' => '/' ), function() { mystack(); });
