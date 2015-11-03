@@ -7,6 +7,7 @@
 	<title>My Stackoverflow</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/custom.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -32,9 +33,9 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				@if (Request::path() != "create")
+				@if (Request::path() != "createview")
 					<ul class="nav navbar-nav">
-						<li><a href="{{ url('/create') }}">Creat Question</a></li>
+						<li><a href="{{ url('/createview') }}">Creat Question</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="{{ url('/tags') }}">Tags</a></li>
