@@ -22,11 +22,4 @@ class answers extends Model
 
         return $result;
     }
-
-    // protected static function retrieve_data($fields)
-    // {
-    //     $result = DB::select('select * from questions where id = ?', [1]);
-    //     return $result;
-    // }
-
 }

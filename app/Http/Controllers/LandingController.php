@@ -26,13 +26,20 @@ class LandingController extends Controller
         // Pass question Id and Description of Answer
         $aid = answers::add_answer($input['detail'], $qid);
 
-        dd($aid);
-        return view('createview');
+        // After saving Q and A pass the qid to display the page with Q and A
+        $output = questions::show_question_answers($qid);
+        return view('showquestion')
+            ->with('title', $output['title'])
+            ->with('answer', $output['answer']);
     }
 
     public function showquestion()
 	{
-		return view('createview');
-	}
+        $qid = 2;
+        $output = questions::show_question_answers($qid);
+        return view('showquestion')
+            ->with('title', $output['title'])
+            ->with('answer', $output['answer']);
+    }
 
 }

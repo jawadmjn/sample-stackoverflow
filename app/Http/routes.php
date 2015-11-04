@@ -28,6 +28,7 @@ function mystack()
     Route::get( 'createview',       array('as' => 'createview',   'uses' => 'LandingController@createview'));
     Route::post( 'createquestion',   array('as' => 'createquestion',   'uses' => 'LandingController@createquestion'));
     Route::get( 'showquestion',     array('as' => 'showquestion',   'uses' => 'LandingController@showquestion'));
+    Route::get( 'createanswer',     array('as' => 'createanswer',   'uses' => 'LandingController@createanswer'));
 }
 
 Route::controllers([
