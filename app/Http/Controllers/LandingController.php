@@ -9,11 +9,8 @@ class LandingController extends Controller
 {
     public function index()
     {
-        // $output = questions::show_question_answers($input['qid']);
-        // return view('landing')
-        //     ->with('title', $output['title'])
-        //     ->with('answer', $output['answer'])
-        //     ->with('qid', $input['qid']);
+        $output = questions::homequestion();
+        return view('landing')->with('questions', $output);
 
         return view('landing');
     }
@@ -33,12 +30,8 @@ class LandingController extends Controller
         // Pass question Id and Description of Answer
         $aid = answers::add_answer($input['detail'], $qid);
 
-        // After saving Q and A pass the qid to display the page with Q and A
-        $output = questions::show_question_answers($qid);
-        return view('showquestion')
-            ->with('title', $output['title'])
-            ->with('answer', $output['answer'])
-            ->with('qid', $qid);
+        // After saving Q and A pass the aid to display the page with Q and A
+        return Redirect::to('/showquestion?qid=' . $aid);
     }
 
     public function createanswer()

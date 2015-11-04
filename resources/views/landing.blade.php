@@ -9,14 +9,20 @@
 
 				@include('forms.homeform')
 				<div class="panel-body">
-					<h5>
-						<a href="#" id="home_question" class="btn btn-link js-submit" value="2">Cancel</a>
-						<!-- <button type="button" class="btn btn-link" name="foo" value="A">Link</button> -->
-						<input type="hidden" class="q" name="qid" id="qid" value="2"/>
-					</h5>
-					<p>
-						{{ Inspiring::quote() }}
-					</p>
+
+					<?php $i = 1; ?>
+					@foreach ($questions as $key => $value)
+
+						<h5>Question:
+							<a href="#" id="home_question" class="btn btn-link js-submit" value="{{ $value->id }}">{{ $value->title }}</a>
+						</h5>
+						<p>
+							{{ $value->description }}
+						</p>
+
+					<?php $i++; ?>
+					@endforeach
+
 				</div>
 			</div>
 		</div>
@@ -26,8 +32,8 @@
 <script type="text/javascript">
 //var $ = jQuery.noConflict();
 $('.js-submit').click(function(){
-    var upsell = $(this).attr('value');
-    $('input[name="qid"]').val(upsell);
+    var qid = $(this).attr('value');
+    $('input[name="qid"]').val(qid);
     $('#homeForm').submit();
 });
 </script>

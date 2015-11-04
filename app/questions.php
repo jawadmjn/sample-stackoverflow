@@ -4,6 +4,13 @@ use DB;
 
 class questions extends Model
 {
+    public static function homequestion()
+    {
+        $question = DB::select('select questions.id, questions.title, answers.description FROM `questions` INNER JOIN `answers` on questions.id = answers.qid ORDER BY questions.lastmodified DESC');
+        //$question = DB::select('select questions.title, answers.description FROM `questions` INNER JOIN `answers` on questions.id = answers.qid');
+        return $question;
+    }
+
     public static function add_question($fields)
     {
         $date = date('Y-m-d H:i:s', time());

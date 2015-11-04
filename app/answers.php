@@ -23,6 +23,8 @@ class answers extends Model
             ['description' => $fields, 'qid' => $qid, 'lastmodified' => $date]
         );
 
-        return $result;
+        DB::table('questions')->where('id', $qid)->update(['lastmodified' => $date]);
+
+        return $qid;
     }
 }
