@@ -14,9 +14,10 @@ class CreateQuestionsTable extends Migration {
 	{
 		Schema::create('questions', function(Blueprint $table)
 		{
+			$date = date('Y-m-d H:i:s', time());
 			$table->increments('id');
 			$table->string('title');
-			$table->timestamps();
+			$table->datetime('lastmodified')->$date;
 		});
 	}
 

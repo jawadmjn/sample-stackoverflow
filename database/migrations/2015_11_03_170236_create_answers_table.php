@@ -14,10 +14,11 @@ class CreateAnswersTable extends Migration {
 	{
 		Schema::create('answers', function(Blueprint $table)
 		{
+			$date = date('Y-m-d H:i:s', time());
 			$table->increments('id');
 			$table->string('description');
 			$table->integer('qid');
-			$table->timestamps();
+			$table->datetime('lastmodified')->$date;
 		});
 	}
 
