@@ -4,7 +4,7 @@
 	<div class="form-group">
 		<div class="col-md-6">
 			<input
-				type="text"
+				type="hidden"
 				class="form-control"
 				name="qid"
 				id="qid"
@@ -15,7 +15,6 @@
 				name="detail"
 				rows="3"
 				data-validation="required custom"
-	            data-validation-regexp="^([A-Za-z ]+)$"
 	            data-validation-error-msg="Enter Answer"
 				></textarea>
 		</div>

@@ -24,11 +24,11 @@ Route::group( array('domain' => 'www.mystack.com', 'prefix' => '/' ), function()
 function mystack()
 {
     // These Routes are listed in the same chronolical Order as they are called
-    Route::get( '',                 array('as' => 'landingpage',   'uses' => 'LandingController@index'));
-    Route::get( 'createview',       array('as' => 'createview',   'uses' => 'LandingController@createview'));
-    Route::post( 'createquestion',   array('as' => 'createquestion',   'uses' => 'LandingController@createquestion'));
-    Route::get( 'showquestion',     array('as' => 'showquestion',   'uses' => 'LandingController@showquestion'));
-    Route::get( 'createanswer',     array('as' => 'createanswer',   'uses' => 'LandingController@createanswer'));
+    Route::get('',                  array('as' => 'landingpage',   'uses' => 'LandingController@index'));
+    Route::get('createview',        array('as' => 'createview',   'uses' => 'LandingController@createview'));
+    Route::post('createquestion',   array('as' => 'createquestion',   'uses' => 'LandingController@createquestion'));
+    Route::any('showquestion',      array('as' => 'showquestion',   'uses' => 'LandingController@showquestion'));
+    Route::post('createanswer',     array('as' => 'createanswer',   'uses' => 'LandingController@createanswer'));
 }
 
 Route::controllers([

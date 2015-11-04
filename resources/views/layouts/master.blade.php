@@ -57,5 +57,6 @@
         borderColorOnError : '#d3d3d3'
     });
     </script>
+    @yield('javascript')
 </body>
 </html>

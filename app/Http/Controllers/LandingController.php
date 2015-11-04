@@ -3,11 +3,18 @@
 use Request;
 use App\questions;
 use App\answers;
+use Illuminate\Support\Facades\Redirect;
 
 class LandingController extends Controller
 {
     public function index()
     {
+        // $output = questions::show_question_answers($input['qid']);
+        // return view('landing')
+        //     ->with('title', $output['title'])
+        //     ->with('answer', $output['answer'])
+        //     ->with('qid', $input['qid']);
+
         return view('landing');
     }
 
@@ -30,16 +37,30 @@ class LandingController extends Controller
         $output = questions::show_question_answers($qid);
         return view('showquestion')
             ->with('title', $output['title'])
-            ->with('answer', $output['answer']);
+            ->with('answer', $output['answer'])
+            ->with('qid', $qid);
+    }
+
+    public function createanswer()
+    {
+        $input = Request::all();
+
+        // Pass question Id and Description of Answer
+        $aid = answers::add_answer($input['detail'], $input['qid']);
+
+        // After saving Q and A pass the qid to display the page with Q and A
+        $output = questions::show_question_answers($input['qid']);
+        return Redirect::to('/showquestion?qid=' . $input['qid']);
     }
 
     public function showquestion()
-	{
-        $qid = 2;
-        $output = questions::show_question_answers($qid);
+    {
+        $input = Request::all();
+        $output = questions::show_question_answers($input['qid']);
         return view('showquestion')
             ->with('title', $output['title'])
-            ->with('answer', $output['answer']);
+            ->with('answer', $output['answer'])
+            ->with('qid', $input['qid']);
     }
 
 }

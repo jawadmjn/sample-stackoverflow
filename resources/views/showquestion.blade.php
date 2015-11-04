@@ -9,11 +9,16 @@
 
 				<div class="panel-body">
 
-					<h2>You are logged in! Timestamps {{ $title }}</h2>
-					<h5>Answer 1:</h5>
-					<p>
-						{{ $answer }}
-					</p>
+					<h1>{{ $title }}</h1>
+
+					<?php $i = 1; ?>
+					@foreach ($answer as $key => $value)
+						<h5>Answer {{ $i }}:</h5>
+						<p>
+							{{ $value->description }}
+						</p>
+					<?php $i++; ?>
+					@endforeach
 
 					<h2>Your Answer ?</h2>
 					@include('forms.answerform')

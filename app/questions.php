@@ -18,8 +18,10 @@ class questions extends Model
     public static function show_question_answers($qid)
     {
         $question = questions::where('id', '=', $qid)->firstOrFail();
-        $answer = answers::findOrFail($qid);
-        $output = ['title' => $question->title, 'answer' => $answer->description];
+        $answer = answers::where('qid', '=', $qid)->get();
+        //$answer = DB::select('select * from answers where qid=?', [$qid]);
+
+        $output = ['title' => $question->title, 'answer' => $answer];
         return $output;
     }
 }

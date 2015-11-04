@@ -6,12 +6,15 @@ class answers extends Model
 {
     public static function add_answer($fields, $qid)
     {
-        $qid = $qid[0];
-        foreach ($qid as $key => $value)
+        if(!is_numeric($qid))
         {
-            if(is_numeric($value))
+            $qid = $qid[0];
+            foreach ($qid as $key => $value)
             {
-                $qid = $value;
+                if(is_numeric($value))
+                {
+                    $qid = $value;
+                }
             }
         }
 
