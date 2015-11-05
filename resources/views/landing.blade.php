@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+
+<?php use App\tags; ?>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -25,7 +28,7 @@
 						    // truncate string
 						    $stringCut = substr($string, 0, 45);
 
-						    // make sure it ends in a word so assassinate doesn't become ass...
+						    // for making sure it ends in a word so assassinate doesn't become ass...
 						    $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'<span> ... Click on Question to Read More<span>';
 							echo $string;
 						}
@@ -35,6 +38,15 @@
 						}
 						?>
 						</p>
+
+						<!-- Start of creating Tags for each question -->
+						<?php $tag = tags::get_questiontag($value->title); ?>
+				        <!-- ! END of creating Tags for each question -->
+
+						@foreach ($tag as $value)
+							<a href="tag/{{ $value }}" class="btn btn-default">{{ $value }}</a>
+						@endforeach
+
 						<hr>
 					@endforeach
 

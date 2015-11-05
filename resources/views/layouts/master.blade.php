@@ -38,7 +38,7 @@
 						<li><a href="{{ url('/createview') }}">Creat Question</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="{{ url('/tags') }}">Tags</a></li>
+						<li><a href="{{ url('/tags') }}">All Tags</a></li>
 					</ul>
 				@endif
 			</div>

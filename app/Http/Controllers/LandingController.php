@@ -3,7 +3,8 @@
 use Request;
 use App\questions;
 use App\answers;
-use Illuminate\Support\Facades\Redirect;
+use App\tags;
+use Redirect;
 
 class LandingController extends Controller
 {
@@ -16,7 +17,8 @@ class LandingController extends Controller
     public function tags()
     {
         $output = questions::tags();
-        return view('tags')->with('questions', $output);
+        $getTag = tags::get_tag($output);
+        return view('tags')->with('tag', $getTag);
     }
 
     public function tagsearch($tag)
