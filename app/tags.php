@@ -16,7 +16,7 @@ class tags extends Model
         {
             foreach ($value as $key => $singlevalue)
             {
-                // if statement storing all the single values in another tags if its leanghty enough to be a tag
+                // Storing all the single values in another tags array if its leanghty enough to be a tag
                 if (strlen($singlevalue) > 2)
                 {
                     $utag[] = $singlevalue;
@@ -36,7 +36,7 @@ class tags extends Model
         {
             foreach ($value as $key => $singlevalue)
             {
-                // if statement storing all the single values in another tags if its leanghty enough to be a tag
+                // Storing all the single values in another tags array if its leanghty enough to be a tag
                 if (strlen($singlevalue) > 2)
                 {
                     $utag[] = $singlevalue;
