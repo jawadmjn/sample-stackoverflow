@@ -1,10 +1,9 @@
 <?php namespace App\Http\Controllers;
-
 use Request;
-use App\questions;
-use App\answers;
-use App\tags;
 use Redirect;
+use App\Models\questions;
+use App\Models\answers;
+use App\Models\tags;
 
 class LandingController extends Controller
 {

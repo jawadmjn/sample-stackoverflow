@@ -2,7 +2,7 @@
 
 @section('content')
 
-<?php use App\tags; ?>
+<?php use App\Models\tags; ?>
 
 <div class="container">
 	<div class="row">
