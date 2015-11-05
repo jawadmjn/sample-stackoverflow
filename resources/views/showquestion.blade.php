@@ -9,7 +9,7 @@
 
 				<div class="panel-body">
 
-					<h1>{{ $title }}</h1>
+					<h1>Q: {{ $title }}</h1>
 
 					<?php $i = 1; ?>
 					@foreach ($answer as $key => $value)
@@ -18,6 +18,7 @@
 							{{ $value->description }}
 						</p>
 					<?php $i++; ?>
+					<hr>
 					@endforeach
 
 					<h2>Your Answer ?</h2>

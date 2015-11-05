@@ -6,8 +6,16 @@ class questions extends Model
 {
     public static function homequestion()
     {
-        $question = DB::select('select questions.id, questions.title, answers.description FROM `questions` INNER JOIN `answers` on questions.id = answers.qid ORDER BY questions.lastmodified DESC');
-        //$question = DB::select('select questions.title, answers.description FROM `questions` INNER JOIN `answers` on questions.id = answers.qid');
+
+        $question = DB::table('questions')
+                        ->join('answers', 'questions.id', '=', 'answers.qid')
+                        ->select('questions.id', 'questions.title', 'answers.description', 'answers.qid')
+                        ->orderBy('questions.lastmodified', 'DESC')
+                        ->groupBy('answers.qid')
+                        ->get();
+
+        //$question = DB::select('select questions.id, questions.title, answers.description, answers.qid FROM `questions` INNER JOIN `answers` on questions.id = answers.qid ORDER BY questions.lastmodified DESC');
+
         return $question;
     }
 

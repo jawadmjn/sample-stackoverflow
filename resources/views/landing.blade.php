@@ -8,7 +8,7 @@
 				<div class="panel-heading">Latest 10 Questions - Click on Question to view all the Answers</div>
 
 				@include('forms.homeform')
-				<div class="panel-body">
+				<div class="panel-body home_style">
 
 					<?php $i = 1; ?>
 					@foreach ($questions as $key => $value)
@@ -17,9 +17,26 @@
 							<a href="#" id="home_question" class="btn btn-link js-submit" value="{{ $value->id }}">{{ $value->title }}</a>
 						</h5>
 						<p>
-							{{ $value->description }}
-						</p>
+						<?php
+						// strip tags to avoid breaking any html
+						$string = strip_tags($value->description);
 
+						if (strlen($string) > 45) {
+
+						    // truncate string
+						    $stringCut = substr($string, 0, 45);
+
+						    // make sure it ends in a word so assassinate doesn't become ass...
+						    $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'....  Click on Question to Read More';
+							echo $string;
+						}
+						else
+						{
+							echo $value->description;
+						}
+						?>
+						</p>
+						<hr>
 					<?php $i++; ?>
 					@endforeach
 

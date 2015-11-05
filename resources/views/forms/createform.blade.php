@@ -10,7 +10,6 @@
 				name="title"
 				id="title"
 				data-validation="required custom"
-	            data-validation-regexp="^([A-Za-z ]+)$"
 	            data-validation-error-msg="Enter Question's Title"
 				value="{{ old('title') }}"
 			/>
@@ -25,7 +24,6 @@
 				name="detail"
 				rows="3"
 				data-validation="required custom"
-	            data-validation-regexp="^([A-Za-z ]+)$"
 	            data-validation-error-msg="Enter Question's Description"
 				></textarea>
 		</div>
