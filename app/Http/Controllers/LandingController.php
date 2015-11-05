@@ -11,8 +11,20 @@ class LandingController extends Controller
     {
         $output = questions::homequestion();
         return view('landing')->with('questions', $output);
+    }
 
-        return view('landing');
+    public function tags()
+    {
+        $output = questions::tags();
+        return view('tags')->with('questions', $output);
+    }
+
+    public function tagsearch($tag)
+    {
+        $output = questions::tagsearch($tag);
+        return view('tagsearch')
+                ->with('questions', $output)
+                ->with('tag', $tag);
     }
 
     public function createview()

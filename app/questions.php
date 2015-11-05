@@ -6,7 +6,6 @@ class questions extends Model
 {
     public static function homequestion()
     {
-
         $question = DB::table('questions')
                         ->join('answers', 'questions.id', '=', 'answers.qid')
                         ->select('questions.id', 'questions.title', 'answers.description', 'answers.qid')
@@ -16,6 +15,26 @@ class questions extends Model
 
         //$question = DB::select('select questions.id, questions.title, answers.description, answers.qid FROM `questions` INNER JOIN `answers` on questions.id = answers.qid ORDER BY questions.lastmodified DESC');
 
+        return $question;
+    }
+
+    public static function tagsearch($tag)
+    {
+        $question = DB::table('questions')
+                        ->join('answers', 'questions.id', '=', 'answers.qid')
+                        ->select('questions.id', 'questions.title', 'answers.description', 'answers.qid')
+                        ->orderBy('questions.lastmodified', 'DESC')
+                        ->groupBy('answers.qid')
+                        ->where('questions.title', 'LIKE', '%'.$tag.'%')
+                        ->get();
+        return $question;
+    }
+
+    public static function tags()
+    {
+        $question = DB::table('questions')
+                        ->select('title')
+                        ->get();
         return $question;
     }
 

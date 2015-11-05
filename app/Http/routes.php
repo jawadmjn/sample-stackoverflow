@@ -29,6 +29,8 @@ function mystack()
     Route::post('createquestion',   array('as' => 'createquestion',   'uses' => 'LandingController@createquestion'));
     Route::any('showquestion',      array('as' => 'showquestion',   'uses' => 'LandingController@showquestion'));
     Route::post('createanswer',     array('as' => 'createanswer',   'uses' => 'LandingController@createanswer'));
+    Route::get('tags',              array('as' => 'tags',   'uses' => 'LandingController@tags'));
+    Route::get('tag/{tag}',         array('as' => 'tagsearch',   'uses' => 'LandingController@tagsearch'));
 }
 
 Route::controllers([

@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">Latest 10 Questions - Click on Question to view all the Answers</div>
+				<div class="panel-heading">Your search for the tag - <b>{{ $tag }}</b></div>
 
 				@include('forms.homeform')
 				<div class="panel-body home_style">
@@ -26,7 +26,7 @@
 						    $stringCut = substr($string, 0, 45);
 
 						    // make sure it ends in a word so assassinate doesn't become ass...
-						    $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'<span> ... Click on Question to Read More<span>';
+						    $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'<span> ....  Click on Question to Read More</span>';
 							echo $string;
 						}
 						else
