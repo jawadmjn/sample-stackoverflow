@@ -5,27 +5,33 @@ class tags extends Model
 {
     public static function get_tag($questions)
     {
-        // This loop getting all the Questions title and exploding w/t "SPACE "
-        foreach ($questions as $key => $value)
+        $utag = null;
+        if($questions != null)
         {
-            $tag[] = explode(" ", $value->title);
-        }
-
-        // This loop getting Single values from each array stored in tag[]
-        foreach ($tag as $key => $value)
-        {
-            foreach ($value as $key => $singlevalue)
+            // This loop getting all the Questions title and exploding w/t "SPACE "
+            foreach ($questions as $key => $value)
             {
-                // Storing all the single values in another tags array if its leanghty enough to be a tag
-                if (strlen($singlevalue) > 2)
+                $tag[] = explode(" ", $value->title);
+            }
+
+            // This loop getting Single values from each array stored in tag[]
+            foreach ($tag as $key => $value)
+            {
+                foreach ($value as $key => $singlevalue)
                 {
-                    $utag[] = $singlevalue;
+                    // Storing all the single values in another tags array if its leanghty enough to be a tag
+                    if (strlen($singlevalue) > 2)
+                    {
+                        $utag[] = $singlevalue;
+                    }
                 }
             }
+            // Make every single value unique, so no repeating of tags
+            $utag = array_unique($utag);
         }
 
         // Make every single value unique, so no repeating of tags
-        return $utag = array_unique($utag);
+        return $utag;
     }
 
     public static function get_questiontag($title)

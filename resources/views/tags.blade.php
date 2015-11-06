@@ -8,9 +8,15 @@
                 <div class="panel-heading">Click on a Tag for releated search</div>
 
                 <div class="panel-body">
-                    @foreach ($tag as $value)
-                        <a href="tag/{{ $value }}" class="btn btn-default">{{ $value }}</a>
-                    @endforeach
+
+                    @if($tag != null)
+                        @foreach ($tag as $value)
+                            <a href="tag/{{ $value }}" class="btn btn-default">{{ $value }}</a>
+                        @endforeach
+                    @else
+                        <p>There are no questions so No Tags. <a href="{{ url('createview') }}" class="btn btn-link js-submit">Create Question Now</a>
+                    @endif
+
                 </div>
 
             </div>
