@@ -16,6 +16,9 @@
                     @if ($questions == null )
                         No Questions, <a href="{{ url('createview') }}" class="btn btn-link js-submit">Create Now</a>
                     @else
+
+                    @include('forms.pagination')
+
                         @foreach ($questions as $key => $value)
                             <h5>Question:
                                 <a href="#" class="btn btn-link js-submit" value="{{ $value->id }}">{{ $value->title }}</a>

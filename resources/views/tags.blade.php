@@ -11,7 +11,7 @@
 
                     @if($tag != null)
                         @foreach ($tag as $value)
-                            <a href="tag/{{ $value }}" class="btn btn-default">{{ $value }}</a>
+                            <a href="tag/{{ $value }}" class="tags btn btn-default">{{ $value }}</a>
                         @endforeach
                     @else
                         <p>There are not enough words in questions to make Tags. <a href="{{ url('createview') }}" class="btn btn-link js-submit">Create Question Now</a>

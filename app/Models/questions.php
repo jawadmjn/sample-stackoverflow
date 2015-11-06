@@ -6,12 +6,13 @@ class questions extends Model
 {
     public static function homequestion()
     {
+        // To limit questions per page just change simplePaginate(10) value for e.g simplePaginate(5) this will show 5 questions per page.
         $question = DB::table('questions')
                         ->join('answers', 'questions.id', '=', 'answers.qid')
                         ->select('questions.id', 'questions.title', 'answers.description', 'answers.qid')
                         ->orderBy('questions.lastmodified', 'DESC')
                         ->groupBy('answers.qid')
-                        ->get();
+                        ->simplePaginate(10);
 
         //$question = DB::select('select questions.id, questions.title, answers.description, answers.qid FROM `questions` INNER JOIN `answers` on questions.id = answers.qid ORDER BY questions.lastmodified DESC');
 

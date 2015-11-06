@@ -10,7 +10,25 @@ class LandingController extends Controller
     public function index()
     {
         $output = questions::homequestion();
-        return view('landing')->with('questions', $output);
+        $totalQuestions = questions::select()->count();
+
+        // To limit questions per page got into app/models/questions::homequestions and
+        // just change simplePaginate(10) value for e.g simplePaginate(5) this will show 5 questions per page.
+
+        // For finding how many numbers we need for pagination i use this technique
+        // $maximum questions / Question req PerPage
+        $reqPagination = ceil( $totalQuestions / $output->perPage() );
+        $reqPagination = number_format($reqPagination, 0);
+
+        // For adding active class in pagination menu
+        $currentPageurl = $output->url($output->currentPage());
+        $active = filter_var($currentPageurl, FILTER_SANITIZE_NUMBER_INT);
+
+        return view('landing')
+                ->with('questions', $output)
+                ->with('totalQuestions', $totalQuestions)
+                ->with('reqPagination', $reqPagination)
+                ->with('active', $active);
     }
 
     public function tags()
