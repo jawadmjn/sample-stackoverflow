@@ -16,7 +16,7 @@ class CreateQuestionsTable extends Migration {
 		{
 			$date = date('Y-m-d H:i:s', time());
 			$table->increments('id');
-			$table->string('title');
+			$table->string('title', 300);
 			$table->datetime('lastmodified')->$date;
 		});
 	}

@@ -16,7 +16,7 @@ class CreateAnswersTable extends Migration {
 		{
 			$date = date('Y-m-d H:i:s', time());
 			$table->increments('id');
-			$table->string('description');
+			$table->string('description', 1100);
 			$table->integer('qid');
 			$table->datetime('lastmodified')->$date;
 		});
