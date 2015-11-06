@@ -50,13 +50,6 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
-	<script type="text/javascript">
-	$.validate({
-        form : '#createForm',
-        borderColorOnError : '#d3d3d3'
-    });
-    </script>
     @yield('javascript')
 </body>
 </html>
