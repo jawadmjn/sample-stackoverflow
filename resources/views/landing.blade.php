@@ -45,9 +45,11 @@
                             <?php $tag = tags::get_questiontag($value->title); ?>
                             <!-- ! END of creating Tags for each question -->
 
+                            @if($tag != null)
                             @foreach ($tag as $value)
                                 <a href="tag/{{ $value }}" class="btn btn-default">{{ $value }}</a>
                             @endforeach
+                            @endif
                             <hr>
                         @endforeach
                     @endif

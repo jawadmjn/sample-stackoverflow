@@ -14,7 +14,7 @@
                             <a href="tag/{{ $value }}" class="btn btn-default">{{ $value }}</a>
                         @endforeach
                     @else
-                        <p>There are no questions so No Tags. <a href="{{ url('createview') }}" class="btn btn-link js-submit">Create Question Now</a>
+                        <p>There are not enough words in questions to make Tags. <a href="{{ url('createview') }}" class="btn btn-link js-submit">Create Question Now</a>
                     @endif
 
                 </div>

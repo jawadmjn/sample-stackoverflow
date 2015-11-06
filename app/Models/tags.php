@@ -19,15 +19,20 @@ class tags extends Model
             {
                 foreach ($value as $key => $singlevalue)
                 {
-                    // Storing all the single values in another tags array if its leanghty enough to be a tag
+                    // Storing all the single values in another tags array if its leanghty enough to be a tag and for avoiding words like, is, am, on a ...
                     if (strlen($singlevalue) > 2)
                     {
                         $utag[] = $singlevalue;
+                        // if there is no value > 2, then this will be a null array and we should not return it.
                     }
                 }
             }
-            // Make every single value unique, so no repeating of tags
-            $utag = array_unique($utag);
+            // if $questions != null and leangth of all singlevalues from title is < 2 then $utag array will be null, so not return  NULL array.
+            if($utag != null)
+            {
+                // Make every single value unique, so no repeating of tags
+                $utag = array_unique($utag);
+            }
         }
 
         // Make every single value unique, so no repeating of tags
@@ -36,20 +41,29 @@ class tags extends Model
 
     public static function get_questiontag($title)
     {
+        $utag = null;
         $tag[] = explode(" ", $title);
         // This loop getting Single values from each array stored in tag[]
         foreach ($tag as $key => $value)
         {
             foreach ($value as $key => $singlevalue)
             {
-                // Storing all the single values in another tags array if its leanghty enough to be a tag
+                // Storing all the single values in another tags array if its leanghty enough to be a tag and for avoiding words like, is, am, on a ...
                 if (strlen($singlevalue) > 2)
                 {
                     $utag[] = $singlevalue;
+                    // if there is no value > 2, then this will be a null array and we should not return it.
                 }
             }
         }
-        // Make every single value unique, so no repeating of tags
-        return $utag = array_unique($utag);
+        if($utag != null)
+        {
+            // Make every single value unique, so no repeating of tags
+            return $utag = array_unique($utag);
+        }
+        else
+        {
+            return $utag;
+        }
     }
 }
