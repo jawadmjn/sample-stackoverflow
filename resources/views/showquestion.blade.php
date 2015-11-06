@@ -9,15 +9,14 @@
 
                 <div class="panel-body">
 
-                    <h1>Q: {{ $title }}</h1>
-
-                    <?php $i = 1; ?>
-                    @foreach ($answer as $key => $value)
-                        <h5>Answer {{ $i }}:</h5>
+                  <h1>Q: {{ $results['title'] }}</h1>
+                  <h4>Total {{ $results['answer']->total() }} Answers available</h4>
+                    {!! $results['answer']->appends(['qid' => $qid])->render() !!}
+                    @foreach ($results['answer'] as $key => $value)
+                        <h5>Answer:</h5>
                         <p>
                             {{ $value->description }}
                         </p>
-                    <?php $i++; ?>
                     <hr>
                     @endforeach
 

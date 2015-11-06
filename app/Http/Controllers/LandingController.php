@@ -81,9 +81,12 @@ class LandingController extends Controller
     {
         $input = Request::all();
         $output = questions::show_question_answers($input['qid']);
+
+        // To limit answers per page got into app/models/questions::show_question_answers and
+        // just change paginate(15) value for e.g paginate(5) this will show only 5 answers per page.
+
         return view('showquestion')
-            ->with('title', $output['title'])
-            ->with('answer', $output['answer'])
+            ->with('results', $output)
             ->with('qid', $input['qid']);
     }
 

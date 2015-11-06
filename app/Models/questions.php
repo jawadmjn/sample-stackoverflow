@@ -53,8 +53,7 @@ class questions extends Model
     public static function show_question_answers($qid)
     {
         $question = questions::where('id', '=', $qid)->firstOrFail();
-        $answer = answers::where('qid', '=', $qid)->get();
-        //$answer = DB::select('select * from answers where qid=?', [$qid]);
+        $answer = answers::where('qid', '=', $qid)->paginate(7);
 
         $output = ['title' => $question->title, 'answer' => $answer];
         return $output;
