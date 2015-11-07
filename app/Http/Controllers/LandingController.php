@@ -27,23 +27,30 @@ class LandingController extends Controller
 
         return view('landing')
                 ->with('questions', $output)
-                ->with('totalQuestions', $totalQuestions)
                 ->with('reqPagination', $reqPagination)
                 ->with('active', $active);
     }
 
     public function tags()
     {
-        $output = questions::tags();
-        $getTag = tags::get_tag($output);
+        $output = new questions;
+        $tag = $output::select('title')->get();
+        $getTag = tags::get_tag($tag);
         return view('tags')->with('tag', $getTag);
     }
 
     public function tagsearch($tag)
     {
-        $output = questions::tagsearch($tag);
+        $output = new questions;
+        $tagresults = $output::select('questions.id', 'questions.title', 'answers.description')
+                        ->join('answers', 'questions.id', '=', 'answers.questions_id')
+                        ->orderBy('questions.lastmodified', 'DESC')
+                        ->groupBy('answers.questions_id')
+                        ->where('questions.title', 'LIKE', '%'.$tag.'%')
+                        ->get();
+
         return view('tagsearch')
-                ->with('questions', $output)
+                ->with('tagresults', $tagresults)
                 ->with('tag', $tag);
     }
 
@@ -56,35 +63,53 @@ class LandingController extends Controller
     {
         $input = Request::all();
 
-        // Add question and get the ID of the Question
-        $qid = questions::add_question($input['title']);
+        // Create the Question
+        $createquestion = new questions;
+        $createquestion->title = $input['title'];
+        $createquestion->lastmodified = date('Y-m-d H:i:s', time());
+        $result = $createquestion->save();
 
-        // Pass question Id and Description of Answer
-        $aid = answers::add_answer($input['detail'], $qid);
+        // after Adding question get the ID of the Question for putting it as FK in answers table
+        $qid = answers::get_qid();
+        //$qid = $createquestion::select('id')->orderBy('lastmodified', 'DESC')->take(1)->get();
+
+        // Create the Answer with proper question id.
+        $createanswer = new answers;
+        $createanswer->description = $input['detail'];
+        $createanswer->questions_id = $qid;
+        $createanswer->lastmodified = date('Y-m-d H:i:s', time());
+        $result = $createanswer->save();
 
         // After saving Q and A pass the aid to display the page with Q and A
-        return Redirect::to('/showquestion?qid=' . $aid);
+        return Redirect::to('/showquestion?qid=' . $qid);
     }
 
     public function createanswer()
     {
         $input = Request::all();
 
-        // Pass question Id and Description of Answer
-        $aid = answers::add_answer($input['detail'], $input['qid']);
+        $createanswer = new answers;
+        $createanswer->description = $input['detail'];
+        $createanswer->questions_id = $input['qid'];
+        $createanswer->lastmodified = date('Y-m-d H:i:s', time());
+        $result = $createanswer->save();
 
         // After saving Q and A pass the qid to display the page with Q and A
-        $output = questions::show_question_answers($input['qid']);
         return Redirect::to('/showquestion?qid=' . $input['qid']);
     }
 
     public function showquestion()
     {
         $input = Request::all();
-        $output = questions::show_question_answers($input['qid']);
+        $question = questions::where('id', '=', $input['qid'])->firstOrFail();
 
-        // To limit answers per page got into app/models/questions::show_question_answers and
-        // just change paginate(15) value for e.g paginate(5) this will show only 5 answers per page.
+        // To limit answers per page just change paginate(8) value for e.g paginate(5) this will show only 5 answers per page.
+        $answers = questions::find($input['qid'])->answers()->paginate(3);
+
+        // $answers->setPath('showquestion'); // bug fix only for goddady
+
+        $output = ['title' => $question->title, 'answer' => $answers];
+
 
         return view('showquestion')
             ->with('results', $output)
