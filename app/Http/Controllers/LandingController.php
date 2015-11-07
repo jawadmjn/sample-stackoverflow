@@ -16,12 +16,13 @@ class LandingController extends Controller
         // just change simplePaginate(10) value for e.g simplePaginate(5) this will show 5 questions per page.
 
         // For finding how many numbers we need for pagination i use this technique
-        // $maximum questions / Question req PerPage
+        // $maximum questions / Question to show PerPage
         $reqPagination = ceil( $totalQuestions / $output->perPage() );
         $reqPagination = number_format($reqPagination, 0);
 
         // For adding active class in pagination menu
-        $currentPageurl = $output->url($output->currentPage());
+        $currentPageurl = $output->url($output->currentPage()); // get current page url
+        // get the numeric value from url for comparing it with for-loop $i
         $active = filter_var($currentPageurl, FILTER_SANITIZE_NUMBER_INT);
 
         return view('landing')
