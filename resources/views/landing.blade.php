@@ -13,7 +13,7 @@
                 @include('forms.homeform')
                 <div class="panel-body home_style">
 
-                    @if ($questions == null )
+                    @if ($questions->count() == 0 )
                         No Questions, <a href="{{ url('createview') }}" class="btn btn-link js-submit">Create Now</a>
                     @else
 

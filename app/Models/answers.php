@@ -6,7 +6,7 @@ class answers extends Model
 {
     public static function add_answer($fields, $qid)
     {
-        if(!is_numeric($qid))
+        if(!is_numeric($qid)) // qid comes in array, just for making it sure a check when array then go in loop foreach
         {
             $qid = $qid[0];
             foreach ($qid as $key => $value)
