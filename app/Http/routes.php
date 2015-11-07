@@ -18,12 +18,29 @@ Route::get('home', 'HomeController@index');
 
 */
 
+
+/*
+Godaddy routes because group is not working on godaddy webhosting
+*/
+
+Route::get('/',                 'LandingController@index');
+Route::get('createview',        'LandingController@createview');
+Route::post('createquestion',   'LandingController@createquestion');
+Route::any('showquestion',      'LandingController@showquestion');
+Route::post('createanswer',     'LandingController@createanswer');
+Route::get('tags',              'LandingController@tags');
+Route::get('tag/{tag}',         'LandingController@tagsearch');
+
+
+
+/*
+Can be use for local virtual domain.
+
 Route::group( array('domain' => 'mystack.com', 'prefix' => '/' ), function() { mystack(); });
 Route::group( array('domain' => 'www.mystack.com', 'prefix' => '/' ), function() { mystack(); });
 
 function mystack()
 {
-    // These Routes are listed in the same chronolical Order as they are called
     Route::get('',                  array('as' => 'landingpage',   'uses' => 'LandingController@index'));
     Route::get('createview',        array('as' => 'createview',   'uses' => 'LandingController@createview'));
     Route::post('createquestion',   array('as' => 'createquestion',   'uses' => 'LandingController@createquestion'));
@@ -32,6 +49,8 @@ function mystack()
     Route::get('tags',              array('as' => 'tags',   'uses' => 'LandingController@tags'));
     Route::get('tag/{tag}',         array('as' => 'tagsearch',   'uses' => 'LandingController@tagsearch'));
 }
+
+*/
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
