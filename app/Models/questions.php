@@ -17,7 +17,7 @@ class questions extends Model
                         ->select('questions.id', 'questions.title', 'answers.description', 'answers.questions_id')
                         ->orderBy('questions.lastmodified', 'DESC')
                         ->groupBy('answers.questions_id')
-                        ->simplePaginate(3);
+                        ->simplePaginate(10);
 
         //$question = DB::select('select questions.id, questions.title, answers.description, answers.questions_id FROM `questions` INNER JOIN `answers` on questions.id = answers.questions_id ORDER BY questions.lastmodified DESC');
 

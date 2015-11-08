@@ -124,7 +124,7 @@ class LandingController extends Controller
         $question = questions::where('id', '=', $input['qid'])->firstOrFail();
 
         // To limit answers per page just change paginate(8) value for e.g paginate(5) this will show only 5 answers per page.
-        $answers = questions::find($input['qid'])->answers()->paginate(3);
+        $answers = questions::find($input['qid'])->answers()->paginate(8);
 
         // $answers->setPath('showquestion'); // bug fix only for goddady
 
