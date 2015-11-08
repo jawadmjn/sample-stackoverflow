@@ -1,3 +1,6 @@
+@if( $error != "" )
+<h3 class="custom-error">* {{ $error }}</h3>
+@endif
 <form class="form-horizontal" id="createForm" role="form" method="POST" action="{{ url('createanswer') }}">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 

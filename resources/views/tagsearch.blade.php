@@ -13,7 +13,7 @@
                     @foreach ($tagresults as $key => $value)
 
                         <h5>Question:
-                            <a href="#" id="home_question" class="btn btn-link js-submit" value="{{ $value->id }}">{{ $value->title }}</a>
+                            <a href="#" class="btn btn-link js-submit" value="{{ $value->id }}">{{ $value->title }}</a>
                         </h5>
                         <p>
                         <?php

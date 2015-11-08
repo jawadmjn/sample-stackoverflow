@@ -63,6 +63,12 @@ class LandingController extends Controller
     {
         $input = Request::all();
 
+        // check for if user disable JS and submit empty form.
+        if($input['title'] == "" || $input['detail'] == "")
+        {
+            return view('createview')->with('error', "Please fill, all fields are Required.");
+        }
+
         // Create the Question
         $createquestion = new questions;
         $createquestion->title = $input['title'];
@@ -88,6 +94,13 @@ class LandingController extends Controller
     {
         $input = Request::all();
 
+        // check for if user disable JS and submit empty form.
+        if($input['detail'] == "")
+        {
+            $error = "Answer can't be blank.";
+            return Redirect::to('/showquestion?qid=' . $input['qid'] . '&error=' . $error);
+        }
+
         $createanswer = new answers;
         $createanswer->description = $input['detail'];
         $createanswer->questions_id = $input['qid'];
@@ -101,6 +114,13 @@ class LandingController extends Controller
     public function showquestion()
     {
         $input = Request::all();
+
+        $error = "";
+        if( isset($input['error']) )
+        {
+            $error = $input['error'];
+        }
+
         $question = questions::where('id', '=', $input['qid'])->firstOrFail();
 
         // To limit answers per page just change paginate(8) value for e.g paginate(5) this will show only 5 answers per page.
@@ -113,7 +133,8 @@ class LandingController extends Controller
 
         return view('showquestion')
             ->with('results', $output)
-            ->with('qid', $input['qid']);
+            ->with('qid', $input['qid'])
+            ->with('error', $error);
     }
 
 }

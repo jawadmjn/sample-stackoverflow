@@ -1,6 +1,8 @@
+@if( isset($error) )
+<h3 class="custom-error">* {{ $error }}</h3>
+@endif
 <form class="form-horizontal" id="createForm" role="form" method="POST" action="{{ url('createquestion') }}">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
 	<div class="form-group">
 		<label class="col-md-1 control-label"><b>Title</b></label>
 		<div class="col-md-6">
@@ -25,6 +27,7 @@
 				rows="3"
 				data-validation="required custom"
 	            data-validation-error-msg="Enter Question's Description"
+				value="{{ old('detail') }}"
 				></textarea>
 		</div>
 	</div>
