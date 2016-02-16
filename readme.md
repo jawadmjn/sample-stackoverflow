@@ -39,11 +39,8 @@ Tokenizer PHP Extension
 there is a file in main directory ".env.example", make a copy of it and rename it as ".env", this file contain enviroment and db connections settings:
 ```bash
 DB_HOST=localhost
-
 DB_DATABASE=your db name
-
 DB_USERNAME=root
-
 DB_PASSWORD=your db password
 ```
 
@@ -75,8 +72,6 @@ sudo chmod -R 777 storage
 [Validation Rules](https://laravel.com/docs/5.0/validation)
 
 [Form Validation JavaScript](http://www.formvalidator.net/)
-
-[Jquery Datepicker](https://jqueryui.com/datepicker/)
 
 ## Developer:
 [Linkedin](https://www.linkedin.com/in/jnawaz)
